@@ -14,14 +14,20 @@ spec:
       labels:
         app: nodeapp
     spec:
-      imagePullSecrets:
-      - name: my-registry-key
       containers:
       - name: nodeapp
-        image: nanajanashia/demo-app:nodeapp
+        image: anshu049/node-test-app:latest
         ports:
         - containerPort: 3000
         imagePullPolicy: Always  
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
 ---
 apiVersion: v1
 kind: Service
@@ -30,14 +36,15 @@ metadata:
   labels:
     app: nodeapp
 spec:
-  type: ClusterIP
+  type: LoadBalancer  
   selector:
     app: nodeapp
   ports:
   - name: service
     protocol: TCP
-    port: 3000
+    port: 80  
     targetPort: 3000
+
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
