@@ -59,8 +59,7 @@ spec:
     port: service
     targetPort: 3000
   namespaceSelector:
-    matchNames:
-    - default
+    any: true
   selector:
     matchLabels:
       app: nodeapp
