@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: main-rules-alert-config
+  namespace: monitoring
+spec:
+  global:
+    resolve_timeout: 1m
+    slack_api_url: 'YOUR_SLACK_WEBHOOK_URL'
+  route:
+    receiver: 'slack-notifications'
+    repeatInterval: 30m
+    routes:
+    - matchers:
+        - name: alertname
+          value: HostHighCpuLoad
+    - matchers:
+        - name: alertname
+          value: KubernetesPodCrashLooping
+      repeatInterval: 10m
+  receivers:
+    - name: 'slack-notifications'
+      slack_configs:
+        - channel: '#channel name'
+          send_resolved: false
