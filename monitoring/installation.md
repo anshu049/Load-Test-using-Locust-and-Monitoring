@@ -15,3 +15,7 @@
 ## Install stack
 
 `helm install monitoring prometheus-community/kube-prometheus-stack -n monitoring`
+
+## Initial paasword for grafana
+
+`kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo`
