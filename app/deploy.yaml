@@ -1,5 +1,3 @@
----
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -11,6 +9,10 @@ spec:
   selector:
     matchLabels:
       app: nodeapp
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
   template:
     metadata:
       labels:
@@ -29,6 +31,28 @@ spec:
           limits:
             cpu: "500m"
             memory: "512Mi"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 30
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: nodeapp-pdb
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: nodeapp
 
 ---
 
