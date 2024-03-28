@@ -12,7 +12,7 @@ REQUEST_COUNT = Counter('http_requests_total', 'Total HTTP Requests', ['method',
 @app.route('/')
 def hello_world():
     REQUEST_COUNT.labels(method='GET', endpoint='/', status=200).inc()
-    return 'Hello, World!'
+    return 'Hello, World!!!'
 
 @app.route('/metrics')
 def metrics():
