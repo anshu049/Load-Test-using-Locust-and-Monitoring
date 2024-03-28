@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flaskapp
-        image: anshu049/test-app:latest
+        image: anshu049/test-app
         ports:
         - containerPort: 5000
         imagePullPolicy: Always
