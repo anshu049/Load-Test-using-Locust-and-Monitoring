@@ -26,8 +26,8 @@ jobs:
 
       - name: Build and Push Images
         env:
-          IMAGE1: node-test-app
-          REPOSITORY_TAG1: ${{ secrets.DOCKERHUB_USERNAME }}/node-test-app
+          IMAGE1: load-test-app
+          REPOSITORY_TAG1: ${{ secrets.DOCKERHUB_USERNAME }}/load-test-app
         run: |
           docker build -t $REPOSITORY_TAG1 app/
           docker push $REPOSITORY_TAG1
