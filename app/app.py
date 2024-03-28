@@ -8,7 +8,7 @@ REQUEST_COUNTER = Counter('http_requests_total', 'Total HTTP Requests', ['method
 
 @app.route('/')
 def index():
-    return 'Hello, World!!!'
+    return 'Hello, World!!!!!!'
 
 @app.route('/about')
 def about():
