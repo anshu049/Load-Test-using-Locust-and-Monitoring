@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flaskapp
-        image: your-docker-username/flask-app:latest  # Update with your Docker image name
+        image: anshu049/load-test-app:latest
         ports:
         - containerPort: 5000
         imagePullPolicy: Always
