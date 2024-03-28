@@ -28,7 +28,6 @@ jobs:
         env:
           IMAGE1: node-test-app
           REPOSITORY_TAG1: ${{ secrets.DOCKERHUB_USERNAME }}/node-test-app
-          DOCKER_TAG: latest-${{ github.sha }}  # Include commit SHA in the tag
         run: |
           docker build -t $REPOSITORY_TAG1:$DOCKER_TAG app/
-          docker push $REPOSITORY_TAG1:$DOCKER_TAG
+          docker push $REPOSITORY_TAG1
