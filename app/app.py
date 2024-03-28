@@ -1,30 +1,20 @@
-from flask import Flask, request
-from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
-
-app = Flask(__name__)
-
-# Define a counter metric for requests
-REQUEST_COUNTER = Counter('http_requests_total', 'Total HTTP Requests', ['method', 'endpoint'])
-
-@app.route('/')
-def index():
-    return 'Hello, World!!!!!!'
-
-@app.route('/about')
-def about():
-    return 'About Page'
-
-# New route for exposing metrics to Prometheus
-@app.route('/metrics')
-def metrics():
-    return generate_latest()
-
-# Custom route for simulating requests (optional)
-@app.route('/simulate_request', methods=['POST'])
-def simulate_request():
-    # Increment the request counter for POST requests to /simulate_request
-    REQUEST_COUNTER.labels(method=request.method, endpoint=request.path).inc()
-    return 'Simulated Request'
-
-if __name__ == '__main__':
+from flask import Flask, jsonify, request
+from prometheus_client import make_wsgi_app, Counter, Histogram
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
+import timeapp = Flask(__name__)app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {
+    '/metrics': make_wsgi_app()
+})REQUEST_COUNT = Counter(
+    'app_request_count',
+    'Application Request Count',
+    ['method', 'endpoint', 'http_status']
+)REQUEST_LATENCY = Histogram(
+    'app_request_latency_seconds',
+    'Application Request Latency',
+    ['method', 'endpoint']
+)@app.route('/')
+def hello():
+    start_time = time.time()
+    REQUEST_COUNT.labels('GET', '/', 200).inc()response = jsonify(message='Hello, world!')
+    REQUEST_LATENCY.labels('GET', '/').observe(time.time() - start_time)
+    return responseif __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
