@@ -1,11 +1,13 @@
-FROM python:3.9-slim
+FROM node:13-alpine
 
-WORKDIR /app
+RUN mkdir -p /usr/app
 
-COPY requirements.txt .
+COPY package*.json /usr/app/
+COPY app /usr/app/
 
-RUN pip install --no-cache-dir -r requirements.txt
+WORKDIR /usr/app
 
-COPY app.py .
+EXPOSE 3000
 
-CMD [ "python", "app.py" ]
+RUN npm install
+CMD ["node", "server.js"]
