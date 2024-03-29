@@ -6,6 +6,7 @@ metadata:
   labels:
     app: nodeapp
 spec:
+  replicas: 3  # Initial number of replicas
   selector:
     matchLabels:
       app: nodeapp
@@ -18,11 +19,18 @@ spec:
       - name: my-registry-key
       containers:
       - name: nodeapp
-        image: nanajanashia/demo-app:nodeapp
+        image: anshu049/nodeapp:latest
         ports:
         - containerPort: 3000
-        imagePullPolicy: Always  
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "500m"  
+          requests:
+
+            cpu: "200m"  
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -30,30 +38,13 @@ metadata:
   labels:
     app: nodeapp
 spec:
-  type: ClusterIP
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster  # Added externalTrafficPolicy for traffic handling
   selector:
     app: nodeapp
   ports:
   - name: service
     protocol: TCP
-    port: 3000
+    port: 80  
     targetPort: 3000
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: monitoring-node-app
-  labels:
-    release: monitoring
-    app: nodeapp
-spec:
-  endpoints:
-  - path: /metrics
-    port: service
-    targetPort: 3000
-  namespaceSelector:
-    matchNames:
-    - default
-  selector:
-    matchLabels:
-      app: nodeapp
+
