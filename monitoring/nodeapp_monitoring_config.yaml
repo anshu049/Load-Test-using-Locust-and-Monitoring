@@ -12,7 +12,7 @@ spec:
     targetPort: 3000
   namespaceSelector:
     matchNames:
-    - default
+    - nodeapp # namespace in which app is deployed
   selector:
     matchLabels:
       app: nodeapp
