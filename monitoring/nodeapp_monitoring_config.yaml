@@ -1,17 +1,18 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: monitoring-flask-app
+  name: monitoring-node-app
   labels:
     release: monitoring
-    app: flaskapp
+    app: nodeapp
 spec:
   endpoints:
   - path: /metrics
-    port: 5000  # Flask app runs on port 5000
-    interval: 15s  # Scrape interval
+    port: service
+    targetPort: 3000
   namespaceSelector:
-    any: true
+    matchNames:
+    - default
   selector:
     matchLabels:
-      app: flaskapp
+      app: nodeapp
