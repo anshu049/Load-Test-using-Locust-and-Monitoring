@@ -4,7 +4,7 @@ This deep dive explores how to optimize scalability using Locust for load testin
 # [Create VPC and EKS using Terraform module](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/tree/master/eks_using_terraform_modules)
 - Apply terraform command.
 - Add [**policy**](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md) to worker to worker node and then [**apply cluster-autoscaler-autodiscover.yaml**](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml).
-- Add **metric server** for HPA to get data.
+- Add [**metric server**](kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml) for HPA to get data.
 - We need to create HPA for both locust and app after deploying them.
 - `kubectl autoscale deployment <deploy-name> --cpu-percent=50 --min=1 --max=10`
 
