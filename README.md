@@ -40,7 +40,8 @@ This deep dive explores how to optimize scalability using Locust for load testin
       - nodeapp # namespace in which app is deployed
     selector:
       matchLabels:
-        app: nodeapp```
+        app: nodeapp
+```
 
 ![argo](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/7f3d931b-a8ec-4543-947d-291708a064d4)
 
