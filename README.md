@@ -42,7 +42,7 @@ This deep dive explores how to optimize scalability using Locust for load testin
       matchLabels:
         app: nodeapp
 ```
-
+- **Argo Repo** (https://github.com/anshu049/Node-App-Manifests)
 ![argo](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/7f3d931b-a8ec-4543-947d-291708a064d4)
 
 # Demo
