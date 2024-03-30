@@ -26,6 +26,7 @@ This deep dive explores how to optimize scalability using Locust for load testin
 
 # Demo
 - Access UI of locust and Run Test
+
 ![adding-url-to-locust](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/7434ca15-435d-4c13-b3d2-26ce97335dbc)
 
 ## Grafana Dashboard
