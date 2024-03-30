@@ -37,12 +37,12 @@ This deep dive explores how to optimize scalability using Locust for load testin
 ![total-request-generated-final](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/6e081252-9d71-4863-bbe6-ab246e94dc2a)
 
 - Increase in cluster resource as the new pod and nodes are getting created.
-![Uploading cluster-final.png…]()
+![cluster-final](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/e006ad5d-3019-475d-a89e-4ea706af0d27)
+
 
 
 
 Let it run for a few minutes and, in the meantime, switch between the Statistics tab and the Charts tab to see how the test is unfolding.
-
 ![locust-overview](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/089e919e-9f5f-48bc-9306-2b7cc078ac4b)
 
 We can see 69 locust workers created using HPA to generate load on our app
