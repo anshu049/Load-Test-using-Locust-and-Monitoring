@@ -38,3 +38,28 @@ This deep dive explores how to optimize scalability using Locust for load testin
 - Increase in cluster resource as the new pod and nodes are getting created.
 ![cluster-final](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/c4bfb83e-9a70-49fc-bc13-bb389a296bb1)
 Let it run for a few minutes and, in the meantime, switch between the Statistics tab and the Charts tab to see how the test is unfolding.
+
+![locust-logs](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/f802dd6d-5787-474a-b3ac-b81f752fbaed)
+We can see 69 locust workers created using HPA to generate load on our app
+
+# Now, Lets see how our cluster scaled
+- As load increased on our app, HPA created new pod based on resource utilisation.
+![hpa](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/45abf727-5d98-43de-b863-42b2092c5465)
+
+- Available node is not enough for new pod get running, So new pod is in "pending state"
+![pods-pending](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/4cda45dd-5697-4880-8c88-7a14510b5dae)
+
+- New node get created automatically.
+![new-node-created](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/88a173c8-2e73-4ad2-9248-482279cbb5e6)
+
+- Still the pod is in "pending state", as soon as the new worker node gets ready
+![new-node-ready](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/dc117722-afc5-4e49-853e-dd9d64393e2b)
+
+- The pod state is changed to "running"
+![new-pod-started](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/3b21cd0d-70ea-45c2-a6a2-422a6efe79c5)
+
+
+# Conclusion 
+In summary, this deep dive into load testing with Locust on Amazon EKS focused on optimizing scalability for a Node.js application using Kubernetes' HPA and Cluster Autoscaler. Key steps included setting up EKS clusters, applying worker node autoscaling policies, enabling HPA, integrating the Cluster Autoscaler, and deploying monitoring components like Prometheus and Grafana. The process demonstrated how the system dynamically scaled resources in response to increased load, ensuring efficient handling of user traffic. Overall, the guide provides practical insights for developers and DevOps teams to enhance scalability and performance in Kubernetes environments.
+
+*Delete all the resources*
