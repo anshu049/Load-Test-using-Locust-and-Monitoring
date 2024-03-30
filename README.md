@@ -22,6 +22,26 @@ This deep dive explores how to optimize scalability using Locust for load testin
 - Github Action automatically creates new Image from the latest changes made in app.
   
 # Deployment of App using ArgoCD(CD)
+- Configuration file of our application for monitoring
+```  apiVersion: monitoring.coreos.com/v1
+  kind: ServiceMonitor
+  metadata:
+    name: monitoring-node-app
+    labels:
+      release: monitoring
+      app: nodeapp
+  spec:
+    endpoints:
+    - path: /metrics
+      port: service
+      targetPort: 3000
+    namespaceSelector:
+      matchNames:
+      - nodeapp # namespace in which app is deployed
+    selector:
+      matchLabels:
+        app: nodeapp
+
 ![argo](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/7f3d931b-a8ec-4543-947d-291708a064d4)
 
 # Demo
