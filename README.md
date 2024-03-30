@@ -14,3 +14,7 @@
 - `kubectl create ns monitoring`
 - `helm install monitoring prometheus-community/kube-prometheus-stack -n monitoring`
 - Expose service to access UI of Prometheus and Grafana.
+
+# Deploy Loust
+- Update the Configmap with the actual url of app before applying.
+
