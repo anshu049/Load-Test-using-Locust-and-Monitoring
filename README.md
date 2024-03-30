@@ -6,4 +6,11 @@
 - Add policy to worker to worker node and then apply cluster-autoscaler-autodiscover.yaml.
 - Add metric server for HPA to get data.
 - We need to create HPA for both locust and app after deploying them.
-- kubectl autoscale deployment <deploy-name> --cpu-percent=50 --min=1 --max=10
+- `kubectl autoscale deployment <deploy-name> --cpu-percent=50 --min=1 --max=10`
+
+# Install monitoring components on cluster
+- `helm repo add prometheus-communityhttps://prometheus-community.github.io/helm-charts`
+- `helm repo update`
+- `kubectl create ns monitoring`
+- `helm install monitoring prometheus-community/kube-prometheus-stack -n monitoring`
+- Expose service to access UI of Prometheus and Grafana.
