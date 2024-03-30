@@ -3,8 +3,8 @@ This deep dive explores how to optimize scalability using Locust for load testin
 
 # Create VPC and EKS using Terraform module
 - Apply terraform command.
-- Add policy to worker to worker node and then apply cluster-autoscaler-autodiscover.yaml.
-- Add metric server for HPA to get data.
+- Add *policy* to worker to worker node and then *apply cluster-autoscaler-autodiscover.yaml*.
+- Add *metric server* for HPA to get data.
 - We need to create HPA for both locust and app after deploying them.
 - `kubectl autoscale deployment <deploy-name> --cpu-percent=50 --min=1 --max=10`
 
@@ -18,3 +18,23 @@ This deep dive explores how to optimize scalability using Locust for load testin
 # Deploy Loust
 - Update the Configmap with the actual url of app before applying.
 
+# Build Docker image(CI)
+- Github Action automatically creates new Image from the latest changes made in app.
+  
+# Deployment of App using ArgoCD
+![argo](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/7f3d931b-a8ec-4543-947d-291708a064d4)
+
+# Demo
+- Access UI of locust and Run Test
+![adding-url-to-locust](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/7434ca15-435d-4c13-b3d2-26ce97335dbc)
+
+## Grafana Dashboard
+- request/second generated on our app by Locust
+![request:second-final](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/92c36e31-8c81-4160-ade8-41aaa1af8f2a)
+
+- Total request generated on our app by Locust.
+![total-request-generated-final](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/6e081252-9d71-4863-bbe6-ab246e94dc2a)
+
+- Increase in cluster resource as the new pod and nodes are getting created.
+![cluster-final](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/c4bfb83e-9a70-49fc-bc13-bb389a296bb1)
+Let it run for a few minutes and, in the meantime, switch between the Statistics tab and the Charts tab to see how the test is unfolding.
