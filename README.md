@@ -37,6 +37,8 @@ This deep dive explores how to optimize scalability using Locust for load testin
 ![total-request-generated-final](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/6e081252-9d71-4863-bbe6-ab246e94dc2a)
 
 - Increase in cluster resource as the new pod and nodes are getting created.
+![Uploading cluster-final.png…]()
+
 
 
 Let it run for a few minutes and, in the meantime, switch between the Statistics tab and the Charts tab to see how the test is unfolding.
