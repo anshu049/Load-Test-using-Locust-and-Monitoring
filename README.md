@@ -18,10 +18,10 @@ This deep dive explores how to optimize scalability using Locust for load testin
 # Deploy Loust
 - Update the Configmap with the actual url of app before applying.
 
-# Build Docker image(CI)
+# Build Docker image using Github Action(CI)
 - Github Action automatically creates new Image from the latest changes made in app.
   
-# Deployment of App using ArgoCD
+# Deployment of App using ArgoCD(CD)
 ![argo](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/assets/95365748/7f3d931b-a8ec-4543-947d-291708a064d4)
 
 # Demo
