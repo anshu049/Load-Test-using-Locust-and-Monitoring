@@ -17,7 +17,7 @@ Locust is an open-source load testing tool that allows you to define user behavi
 - Apply [**apply cluster-autoscaler-autodiscover.yaml**](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml) after updating the `cluster-name` and `image version` in the the deployment section to match your Kubernetes version.
 - Add [**metric server**](https://github.com/kubernetes-sigs/metrics-server) for HPA to gather data.
 - We need to create HPA for both locust and app after deploying them.
-- `kubectl autoscale deployment <deploy-name> --cpu-percent=50 --min=1 --max=10`
+`kubectl autoscale deployment <deploy-name> --cpu-percent=50 --min=1 --max=10`
 
 # Install monitoring components on cluster
 - **Run the following commands:**
