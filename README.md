@@ -17,7 +17,7 @@ Locust is an open-source load testing tool that allows you to define user behavi
 - Apply [**apply cluster-autoscaler-autodiscover.yaml**](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml) after updating the `cluster-name` and `image version` in the the deployment section to match your Kubernetes version.
 - Add [**metric server**](https://github.com/kubernetes-sigs/metrics-server) for HPA to gather data.
 - We need to create HPA for both locust and app after deploying them.
-   `kubectl autoscale deployment <deploy-name> --cpu-percent=50 --min=1 --max=10`
+- `kubectl autoscale deployment <deploy-name> --cpu-percent=50 --min=1 --max=10`
 
 # Install monitoring components on cluster
 - **Run the following commands:**
@@ -27,7 +27,7 @@ Locust is an open-source load testing tool that allows you to define user behavi
 - `helm install monitoring prometheus-community/kube-prometheus-stack -n monitoring`
 - Edit the service of Prometheus and Grafana from ClusterIP to `LoadBalancer` to access the UI.
 - Prometheus don't require initial password, for Grafana we can run
-`kubectl get secret --namespace monitoring monitoring-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo`
+- `kubectl get secret --namespace monitoring monitoring-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo`
 
 # [Deploy Loust](https://github.com/anshu049/Load-Test-using-Locust-and-Monitoring/tree/master/locust)
 - Update the Configmap provided in the GitHub repo before applying it. Add the actual URL of the app in the `task` section so that Locust can send traffic to the right place. Locust's master-service is configured as LoadBalancer type to access the UI.
