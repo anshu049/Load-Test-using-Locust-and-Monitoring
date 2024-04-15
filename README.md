@@ -1,5 +1,5 @@
 # Blog Link
-`https://blog.kubesimplify.com/optimizing-scalability-a-deep-dive-into-load-testing-with-locust-on-eks`
+**https://blog.kubesimplify.com/optimizing-scalability-a-deep-dive-into-load-testing-with-locust-on-eks**
 
 
 # Introduction
